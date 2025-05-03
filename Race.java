@@ -100,6 +100,13 @@ public class Race
             moveHorse(lane1Horse);
             moveHorse(lane2Horse);
             moveHorse(lane3Horse);
+            
+            //checks if the horses has fallen
+            if(lane1Horse.hasFallen() && lane2Horse.hasFallen() && lane3Horse.hasFallen())
+            {
+                System.out.println("All horses have fallen!");
+                finished = true;
+            }
                         
             //print the race positions
             printRace();
