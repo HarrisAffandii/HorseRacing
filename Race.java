@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -15,6 +16,7 @@ public class Race
     private Horse lane1Horse;
     private Horse lane2Horse;
     private Horse lane3Horse;
+    private ArrayList<Horse> horseList = new ArrayList<Horse>();
 
     /**
      * Constructor for objects of class Race
@@ -29,6 +31,24 @@ public class Race
         lane1Horse = null;
         lane2Horse = null;
         lane3Horse = null;
+    }
+
+    private void initHorses(){
+        Scanner scanner = new Scanner(System.in);
+
+        for(int i = 0; i<3; i++){
+            System.out.println("Enter horse name: ");
+            String name = scanner.nextLine();
+            System.out.println("Enter horse symbol: ");
+            char symbol = scanner.next().charAt(0);
+            System.out.println("Enter horse confidence (0.1 - 0.9): ");
+            double confidence = scanner.nextDouble();
+            scanner.nextLine();
+            Horse horse = new Horse(symbol, name, confidence);
+            addHorse(horse, i+1);
+            horseList.add(horse);
+            
+        }
     }
     
     /**
@@ -68,10 +88,10 @@ public class Race
         //declare a local variable to tell us when the race is finished
         boolean finished = false;
         
-        //reset all the lanes (all horses not fallen and back to 0). 
-        lane1Horse.goBackToStart();
-        lane2Horse.goBackToStart();
-        lane3Horse.goBackToStart();
+        //reset all the lanes (all horses not fallen and back to 0), also null checks
+        if(lane1Horse != null) lane1Horse.goBackToStart();
+        if(lane2Horse != null) lane1Horse.goBackToStart();
+        if(lane3Horse != null) lane1Horse.goBackToStart();
                       
         while (!finished)
         {
@@ -84,8 +104,17 @@ public class Race
             printRace();
             
             //if any of the three horses has won the race is finished
-            if ( raceWonBy(lane1Horse) || raceWonBy(lane2Horse) || raceWonBy(lane3Horse) )
+            if ( raceWonBy(lane1Horse))
             {
+                System.out.println("Winner is " + lane1Horse.getName());
+                finished = true;
+            } else if ( raceWonBy(lane2Horse))
+            {
+                System.out.println("Winner is " + lane2Horse.getName());
+                finished = true;
+            } else if ( raceWonBy(lane3Horse))
+            {
+                System.out.println("Winner is " + lane3Horse.getName());
                 finished = true;
             }
            
@@ -223,6 +252,6 @@ public class Race
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         Race race1 = new Race(20);
-        race1.startRace();
+        race1.initHorses();
     }
 }
