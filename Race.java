@@ -17,6 +17,7 @@ public class Race
     private Horse lane2Horse;
     private Horse lane3Horse;
     private ArrayList<Horse> horseList = new ArrayList<Horse>();
+    private static final double MAX_FALL_PROB = 0.1;
 
     /**
      * Constructor for objects of class Race
@@ -147,7 +148,7 @@ public class Race
             //the probability that the horse will fall is very small (max is 0.1)
             //but will also will depends exponentially on confidence 
             //so if you double the confidence, the probability that it will fall is *2
-            if (Math.random() < (0.1*theHorse.getConfidence()*theHorse.getConfidence()))
+            if (Math.random() < (MAX_FALL_PROB*theHorse.getConfidence()*theHorse.getConfidence()))
             {
                 theHorse.fall();
             }
@@ -253,5 +254,6 @@ public class Race
         Scanner scanner = new Scanner(System.in);
         Race race1 = new Race(20);
         race1.initHorses();
+        race1.startRace();
     }
 }
