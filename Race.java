@@ -1,4 +1,6 @@
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+
 
 /**
  * A three-horse race, each horse running in its own lane
@@ -216,5 +218,11 @@ public class Race
             System.out.print(aChar);
             i = i + 1;
         }
+    }
+
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        Race race1 = new Race(20);
+        race1.startRace();
     }
 }
