@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+import javax.swing.*;
+import java.io.*;
 
 
 /**
@@ -257,35 +259,22 @@ public class Race
         }
     }
 
-    private static boolean menu(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please select an option: \n1. Start Race\n2. Settings\n3. Exit");
-        int option = scanner.nextInt();
-        
-        if(option == 1){
-            Race race1 = new Race(20);
-            race1.initHorses();
-            race1.startRace();
-        }else if(option == 2){
-            System.out.println("Settings");
-        }else if(option == 3){
-            System.out.println("Exiting...");
-            return true;
-        }
-        return false;
+    /***
+     * GUI  for the game
+     */
+
+    private static void GUI(){
+        JFrame frame = new JFrame("Horse Racing Game");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 400);
+        frame.setVisible(true);
     }
+    
 
 
     public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in);
-        boolean exit = false;
-
-        System.out.println("Welcome to the Horse Racing Game!");
-
-        while(exit == false){
-            exit = menu();
-        }
-
+        GUI();
+        
 
         // Race race1 = new Race(20);
         // race1.initHorses();
