@@ -257,10 +257,38 @@ public class Race
         }
     }
 
+    private static boolean menu(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please select an option: \n1. Start Race\n2. Settings\n3. Exit");
+        int option = scanner.nextInt();
+        
+        if(option == 1){
+            Race race1 = new Race(20);
+            race1.initHorses();
+            race1.startRace();
+        }else if(option == 2){
+            System.out.println("Settings");
+        }else if(option == 3){
+            System.out.println("Exiting...");
+            return true;
+        }
+        return false;
+    }
+
+
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-        Race race1 = new Race(20);
-        race1.initHorses();
-        race1.startRace();
+        boolean exit = false;
+
+        System.out.println("Welcome to the Horse Racing Game!");
+
+        while(exit == false){
+            exit = menu();
+        }
+
+
+        // Race race1 = new Race(20);
+        // race1.initHorses();
+        // race1.startRace();
     }
 }
