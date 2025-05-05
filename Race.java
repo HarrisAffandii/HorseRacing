@@ -260,24 +260,69 @@ public class Race
     }
 
     /***
+     * Menu for the game
+     * 
+     * @return true if the user wants to exit
+     */
+    private static boolean menu(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please select an option: \n1. Start Race\n2. Settings\n3. Exit");
+        int option = scanner.nextInt();
+        
+        if(option == 1){
+            Race race1 = new Race(20);
+            race1.initHorses();
+            race1.startRace();
+        }else if(option == 2){
+            System.out.println("Settings");
+        }else if(option == 3){
+            System.out.println("Exiting...");
+            return true;
+        }
+        return false;
+    }
+
+    /***
      * GUI  for the game
      */
 
-    private static void GUI(){
+    private static void GUIMain(){
+        JLabel label = new JLabel("Horse Racing Game");
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setVerticalAlignment(JLabel.CENTER);
+
+        JButton playButton = new JButton("Play");
+        //playButton.setBounds(0, 0, 50, 50);
+        playButton.setHorizontalAlignment(JButton.CENTER);
+        playButton.setVerticalAlignment(JButton.CENTER);
+
+
         JFrame frame = new JFrame("Horse Racing Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 400);
+        frame.setSize(500, 600);
         frame.setVisible(true);
+        frame.add(playButton);
+        frame.add(label);
+        
     }
     
 
 
     public static void main(String[] args){
-        GUI();
-        
+        Scanner scanner = new Scanner(System.in);
+        boolean exit = false;
+        System.out.println("Please type 1 for terminal or 2 for GUI");
+        int choice = scanner.nextInt();
+        if(choice == 1){
+            System.out.println("Welcome to the horse racing game");
+            while(!exit){
+                exit = menu();
+            }
+        }if(choice == 2){
+            GUIMain();
+        }else{
+            System.out.println("Invalid choice");
+        }
 
-        // Race race1 = new Race(20);
-        // race1.initHorses();
-        // race1.startRace();
     }
 }
